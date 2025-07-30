@@ -1,16 +1,30 @@
-# map_odev
+# 📍 Favori Mekanlarım – Flutter Map Uygulaması
 
-A new Flutter project.
+Bu proje, **Flutter** ile geliştirilmiş bir harita tabanlı mobil uygulamadır. Kullanıcıya **Türkiye üzerindeki 100 favori konumu** interaktif olarak gösterir. 
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+## 🚀 Özellikler
 
-A few resources to get you started if this is your first Flutter project:
+- 📌 `flutter_map` paketi ile OpenStreetMap entegrasyonu  
+- 🧭 Harita üzerinde 100 farklı konum (şehir, müze, göl, orman vb.)
+- 📍 Marker’lara tıklanınca açıklama kutucuğu
+- 📋 Marker altı mini bilgi etiketi (popup/snippet benzeri)
+- 🧱 MVVM (Model-View-ViewModel) mimarisi kullanılmıştır
+- 🌍 Türkiye’ye göre konumlandırma yapılmıştır
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## 📦 Kullanılan Paketler
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+| Paket Adı           | Açıklama                              |
+|---------------------|---------------------------------------|
+| `flutter_map`       | Harita görünümü ve marker yönetimi    |
+| `latlong2`          | Koordinat hesaplamaları               |
+| `provider`          | State management (MVVM için)          |
+
+## 🗂 Proje Yapısı (MVVM)
+
+```shell
+lib/
+├── model/           # PlaceModel – konum verisi yapısı
+├── viewmodel/       # MapViewModel – marker listesini yönetir
+├── view/            # MapPage – harita arayüzü
+└── main.dart        # Uygulama başlangıç dosyası
