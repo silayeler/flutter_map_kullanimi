@@ -22,9 +22,57 @@ class _MapPageState extends State<MapPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Flutter Map Örneği'),
         backgroundColor: Colors.redAccent,
         foregroundColor: Colors.white,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const Text('Flutter Map'),
+            DropdownButtonHideUnderline(
+              child: DropdownButton<String>(
+                dropdownColor: Colors.redAccent, // açılır menü arka planı
+                value: viewModel.selectedTile,
+                style: const TextStyle(color: Colors.white, fontSize: 14),
+                icon: const Icon(Icons.arrow_drop_down, color: Colors.white),
+                onChanged: (value) {
+                  if (value != null) {
+                    viewModel.changeTile(value);
+                  }
+                },
+                items: const [
+                  DropdownMenuItem(
+                    value: 'osm',
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(vertical: 8.0),
+                      child: Text('Standart', style: TextStyle(color: Colors.white)),
+                    ),
+                  ),
+                  DropdownMenuItem(
+                    value: 'dark',
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(vertical: 8.0),
+                      child: Text('Karanlık', style: TextStyle(color: Colors.white)),
+                    ),
+                  ),
+                  DropdownMenuItem(
+                    value: 'light',
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(vertical: 8.0),
+                      child: Text('Aydınlık', style: TextStyle(color: Colors.white)),
+                    ),
+                  ),
+                  DropdownMenuItem(
+                    value: 'satellite',
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(vertical: 8.0),
+                      child: Text('Uydu', style: TextStyle(color: Colors.white)),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
       body: Stack(
         children: [
@@ -41,8 +89,9 @@ class _MapPageState extends State<MapPage> {
             ),
             children: [
               TileLayer(
-                urlTemplate: "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                urlTemplate: viewModel.getTileUrl(),
                 userAgentPackageName: 'com.example.map_odev',
+                subdomains: ['a', 'b', 'c'],
               ),
               MarkerLayer(
                 markers: viewModel.places.map((place) {
@@ -101,6 +150,7 @@ class _MapPageState extends State<MapPage> {
               ),
             ],
           ),
+
           if (selectedPlace != null)
             Align(
               alignment: Alignment.bottomCenter,

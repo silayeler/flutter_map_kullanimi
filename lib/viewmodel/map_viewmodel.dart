@@ -2,22 +2,34 @@ import 'package:flutter/material.dart';
 import 'package:latlong2/latlong.dart';
 import '../model/place_model.dart';
 import '../data/mock_places.dart';
-import 'package:flutter_map/flutter_map.dart'; // Marker burada tanımlı
-
 
 class MapViewModel extends ChangeNotifier {
   final List<PlaceModel> _places = mockPlaces;
 
   List<PlaceModel> get places => _places;
 
-  List<Marker> get markers {
-    return _places.map((place) {
-      return Marker(
-        width: 40,
-        height: 40,
-        point: LatLng(place.latitude, place.longitude),
-        child: Icon(Icons.location_on, color: Colors.red, size: 40),
-      );
-    }).toList();
+  // 🔴 Seçili tile türü tutulur
+  String _selectedTile = 'osm';
+
+  String get selectedTile => _selectedTile;
+
+  // 🔄 Tile türü değiştir
+  void changeTile(String tile) {
+    _selectedTile = tile;
+    notifyListeners();
+  }
+
+  // 🌍 Tile URL’sini döndür
+  String getTileUrl() {
+    switch (_selectedTile) {
+      case 'dark':
+        return 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png';
+      case 'light':
+        return 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png';
+      case 'satellite':
+        return 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
+      default:
+        return 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+    }
   }
 }
