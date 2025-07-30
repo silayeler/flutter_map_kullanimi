@@ -1,4 +1,4 @@
-# 📍 Favori Mekanlarım – Flutter Map Uygulaması
+# Flutter Map Uygulaması
 
 Bu proje, **Flutter** ile geliştirilmiş bir harita tabanlı mobil uygulamadır. Kullanıcıya **Türkiye üzerindeki 100 favori konumu** interaktif olarak gösterir. 
 
@@ -11,6 +11,7 @@ Bu proje, **Flutter** ile geliştirilmiş bir harita tabanlı mobil uygulamadır
 - 📋 Marker altı mini bilgi etiketi (popup/snippet benzeri)
 - 🧱 MVVM (Model-View-ViewModel) mimarisi kullanılmıştır
 - 🌍 Türkiye’ye göre konumlandırma yapılmıştır
+- Stack (üst üste bindirme) yapısı kullanılmıştır.Altta harita , harita üzerinde ise marker ın açıklama kutucuğu görünmektedir.
 
 ## 📦 Kullanılan Paketler
 
