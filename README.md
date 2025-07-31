@@ -23,6 +23,14 @@ Bu proje, **Flutter** ile geliştirilmiş bir harita tabanlı mobil uygulamadır
 
 ## 🗂 Proje Yapısı (MVVM)
 
+### Harita Katmanları (Tile Sources)
+
+Bu projede kullanılan harita servisleri:
+
+- OpenStreetMap: © OpenStreetMap contributors
+- Carto Light/Dark Tiles: © CARTO, © OpenStreetMap contributors
+- ESRI Satellite: © Esri, Maxar, Earthstar Geographics, and the GIS User Community
+
 ```shell
 lib/
 ├── model/           # PlaceModel – konum verisi yapısı
