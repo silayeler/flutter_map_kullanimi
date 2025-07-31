@@ -8,19 +8,18 @@ class MapViewModel extends ChangeNotifier {
 
   List<PlaceModel> get places => _places;
 
-  // 🔴 Seçili tile türü tutulur
-  String _selectedTile = 'osm';
+  String _selectedTile = 'osm'; //secilen degeri selectedTile da tuttuk value de
 
   String get selectedTile => _selectedTile;
 
-  // 🔄 Tile türü değiştir
   void changeTile(String tile) {
+    //degiscek yeni cagırılan tile
     _selectedTile = tile;
     notifyListeners();
   }
 
-  // 🌍 Tile URL’sini döndür
   String getTileUrl() {
+    //secilen tile a göre onun url ini döncek
     switch (_selectedTile) {
       case 'dark':
         return 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png';

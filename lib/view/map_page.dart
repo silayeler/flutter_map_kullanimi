@@ -4,7 +4,9 @@ import 'package:provider/provider.dart';
 import 'package:latlong2/latlong.dart';
 import '../viewmodel/map_viewmodel.dart';
 import '../model/place_model.dart';
+import 'package:auto_route/auto_route.dart';
 
+@RoutePage()
 class MapPage extends StatefulWidget {
   const MapPage({super.key});
 
@@ -30,7 +32,7 @@ class _MapPageState extends State<MapPage> {
             const Text('Flutter Map'),
             DropdownButtonHideUnderline(
               child: DropdownButton<String>(
-                dropdownColor: Colors.redAccent, // açılır menü arka planı
+                dropdownColor: Colors.redAccent,
                 value: viewModel.selectedTile,
                 style: const TextStyle(color: Colors.white, fontSize: 14),
                 icon: const Icon(Icons.arrow_drop_down, color: Colors.white),
@@ -79,8 +81,8 @@ class _MapPageState extends State<MapPage> {
           FlutterMap(
             mapController: _mapController,
             options: MapOptions(
-              center: LatLng(39.0, 35.0),
-              zoom: 6.0,
+              initialCenter: LatLng(39.0, 35.0),
+              initialZoom: 6.0,
               onTap: (_, __) {
                 setState(() {
                   selectedPlace = null;
@@ -89,6 +91,9 @@ class _MapPageState extends State<MapPage> {
             ),
             children: [
               TileLayer(
+                retinaMode: true,
+                tileSize: 512,
+                zoomOffset: -1,
                 urlTemplate: viewModel.getTileUrl(),
                 userAgentPackageName: 'com.example.map_odev',
                 subdomains: ['a', 'b', 'c'],
@@ -196,6 +201,7 @@ class _MapPageState extends State<MapPage> {
             ),
         ],
       ),
+      // BottomNavigationBar artık MainWrapper'da olduğu için buradan kaldırıldı
     );
   }
 }
